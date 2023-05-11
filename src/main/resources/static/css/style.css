@@ -1,11 +1,12 @@
 body {
-    background-color: #edeef0;
+    background-color: #edeef0 !important;
 }
 
 .logo {
     width: 43px;
 }
-.logo-h1{
+
+.logo-h1 {
     margin: 0;
 }
 
@@ -51,7 +52,8 @@ body {
     background-color: #04AA6D;
     color: white;
 }
-.action{
+
+.action {
     width: 77px;
 }
 
@@ -104,6 +106,7 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .form-2 {
     width: 50%;
     position: absolute;
@@ -153,53 +156,68 @@ h1 {
         border-color: #a19595
     }
 }
-.carousel-inner{
+
+.carousel-inner {
     margin: auto;
     width: 90%;
     height: 400px;
 }
-.carousel-item{
+
+.carousel-item {
     height: 100%;
 }
-.carousel-inner{
+
+.carousel-inner {
     border-radius: 4px;
 }
-.m-top-40{
+
+.m-top-40 {
     margin-top: 40px;
 }
-.m-bottom-60{
+
+.m-bottom-60 {
     margin-bottom: 60px;
 }
-.search{
+
+.search {
     margin: 20px 0px 20px 3px;
 }
-.logout{
+
+.logout {
     width: 35px;
     margin-right: 20px;
 }
+
 .navbar-collapse {
     justify-content: space-between;
 }
-.incorrect-login{
+
+.incorrect-login {
     margin: 15px;
     color: red;
 }
-.float-right{
+
+.float-right {
     float: right;
 }
-.main{
+
+.main {
     width: 90%;
     margin: auto;
 }
-.search-form-group{
+
+.search-form-group {
     margin: 6px 0px 6px 0px !important;
 }
-.input-img{
+
+.input-img {
     margin: 6px;
 }
-.table-img{
+
+.table-img {
     width: 150px;
 }
-.align-center{
+
+.align-center {
     text-align: center;
 }
