@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+<body>
+<h1>Appointments</h1>
+<a href="/appointments/add">Create Appointments</a>
+<table>
+    <tr>
+        <th>id</th>
+        <th>date time</th>
+        <th>patient</th>
+        <th>doctor</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="appointment:${appointments}">
+        <td th:text="${appointment.id}"></td>
+        <td th:text="${#temporals.format(appointment.dateTime, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${appointment.doctor.surname}"></td>
+        <td th:text="${appointment.patient.name}"></td>
+        <td><a th:href="@{/appointments/remove(id = ${appointment.id})}">
+            remove
+        </a></td>
+    </tr>
+</table>
+</body>
+</html>
