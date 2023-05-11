@@ -11,7 +11,7 @@
         <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}"></option>
     </select>
     <select name="doctor.id">
-        <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}"></option>
+        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.surname}"></option>
     </select>
     <input type="submit" value="add">
 </form>
