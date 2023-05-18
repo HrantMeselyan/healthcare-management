@@ -9,6 +9,7 @@
         <th>email</th>
         <th>specialty</th>
         <th>phone number</th>
+        <th>user</th>
         <th>action</th>
     </tr>
     <tr th:each="doctor:${doctors}">
@@ -20,6 +21,7 @@
         <td th:text="${doctor.email}"></td>
         <td th:text="${doctor.speciality}"></td>
         <td th:text="${doctor.phoneNumber}"></td>
+        <td th:text="${doctor.getUser().getName()}"></td>
         <td class="action"><a th:href="@{/doctors/remove(id = ${doctor.id})}">
             remove
         </a></td>

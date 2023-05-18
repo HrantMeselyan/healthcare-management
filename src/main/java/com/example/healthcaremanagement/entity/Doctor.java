@@ -3,6 +3,7 @@ package com.example.healthcaremanagement.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -22,4 +23,6 @@ public class Doctor {
     private String phoneNumber;
 
     private String profilePic;
+    @ManyToOne
+    private User user;
 }

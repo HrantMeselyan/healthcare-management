@@ -3,6 +3,7 @@ package com.example.healthcaremanagement.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,6 +21,8 @@ public class Patient {
     private String name;
 
     private String surname;
+    @ManyToOne
+    private User user;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirthDay;

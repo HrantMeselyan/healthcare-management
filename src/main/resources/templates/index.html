@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>Medical Center <h1>
-    <a href="/doctors">Doctor</a>
-    <a href="/patients">Patient</a>
-    <a href="/appointments">Appointment</a>
+<div th:if="${user != null}">
+    <h1>Welcome <b th:text="${user.name}"></b></h1>
+</div>
+<h1>Medical Center </h1>
+<a href="/doctors">Doctor</a>
+<a href="/patients">Patient</a>
+<a href="/appointments">Appointment</a>
+<a href="/login" th:if="${user == null}">login</a>
+<a href="/user/register" th:if="${user == null}">Register</a>
+<a th:if="${user != null}" href="/logout">Logout</a>
 </body>
 </html>
