@@ -27,6 +27,8 @@ public class SpringSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/user/register").permitAll()
+                .requestMatchers("/doctors/remove").hasAuthority("ADMIN")
+                .requestMatchers("/patients/remove").hasAuthority("ADMIN")
                 .requestMatchers("/patients/remove").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
