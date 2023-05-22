@@ -4,6 +4,7 @@ package com.example.healthcaremanagement.controller;
 import com.example.healthcaremanagement.entity.Doctor;
 import com.example.healthcaremanagement.security.CurrentUser;
 import com.example.healthcaremanagement.service.DoctorImpl.DoctorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,8 +15,9 @@ import java.io.IOException;
 
 @RequestMapping("/doctors")
 @Controller
+@RequiredArgsConstructor
 public class DoctorController {
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
 
     @GetMapping
     public String doctorPage(ModelMap modelMap) {

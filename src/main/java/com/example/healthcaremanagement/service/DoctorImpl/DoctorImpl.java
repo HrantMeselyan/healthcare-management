@@ -1,5 +1,6 @@
 package com.example.healthcaremanagement.service.DoctorImpl;
 
+import com.example.healthcaremanagement.entity.Appointment;
 import com.example.healthcaremanagement.entity.Doctor;
 import com.example.healthcaremanagement.repository.DoctorRepository;
 import com.example.healthcaremanagement.security.CurrentUser;
@@ -22,7 +23,8 @@ public class DoctorImpl implements DoctorService {
 
     @Override
     public List<Doctor> all() {
-        return doctorRepository.findAll();
+        List<Doctor> all = doctorRepository.findAll();
+        return all;
     }
 
     @Override

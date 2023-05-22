@@ -6,6 +6,7 @@ import com.example.healthcaremanagement.security.CurrentUser;
 import com.example.healthcaremanagement.service.AppointmentImp.AppointmentService;
 import com.example.healthcaremanagement.service.DoctorImpl.DoctorService;
 import com.example.healthcaremanagement.service.PatientImpl.PatientService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/appointments")
 @Controller
+@RequiredArgsConstructor
 public class AppointmentController {
-    private AppointmentService appointmentService;
-    private PatientService patientService;
-    private DoctorService doctorService;
+    private final AppointmentService appointmentService;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
 
     @GetMapping
     public String doctorPage(ModelMap modelMap) {
