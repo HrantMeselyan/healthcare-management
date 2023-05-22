@@ -1,26 +1,21 @@
 package com.example.healthcaremanagement.controller;
 
 import com.example.healthcaremanagement.entity.User;
-import com.example.healthcaremanagement.entity.Usertype;
-import com.example.healthcaremanagement.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.healthcaremanagement.security.CurrentUser;
+import com.example.healthcaremanagement.service.UserImpl.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/register")
     public String registerPage() {
@@ -29,14 +24,12 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute User user) {
-        Optional<User> userFromDb = userRepository.findByEmail(user.getEmail());
-        if (userFromDb.isEmpty()) {
-            String password = user.getPassword();
-            String encodedPassword = passwordEncoder.encode(password);
-            user.setPassword(encodedPassword);
-            user.setType(Usertype.USER);
-            userRepository.save(user);
-        }
+        userService.saveUser(userService.createUser(user));
         return "redirect:/";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
+        return "admin";
     }
 }

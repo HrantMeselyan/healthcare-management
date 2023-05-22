@@ -2,33 +2,24 @@ package com.example.healthcaremanagement.controller;
 
 
 import com.example.healthcaremanagement.entity.Doctor;
-import com.example.healthcaremanagement.repository.DoctorRepository;
 import com.example.healthcaremanagement.security.CurrentUser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.healthcaremanagement.service.DoctorImpl.DoctorService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 @RequestMapping("/doctors")
 @Controller
 public class DoctorController {
-    @Value("${healthcare.upload.image.path}")
-    private String imageUploadPath;
-
-    @Autowired
-    private DoctorRepository doctorRepository;
+    private DoctorService doctorService;
 
     @GetMapping
     public String doctorPage(ModelMap modelMap) {
-        List<Doctor> all = doctorRepository.findAll();
-        modelMap.addAttribute("doctors", all);
+        modelMap.addAttribute("doctors", doctorService.all());
         return "doctors";
     }
 
@@ -39,20 +30,13 @@ public class DoctorController {
 
     @PostMapping("/add")
     public String doctorAddPage(@ModelAttribute Doctor doctor, @RequestParam("image") MultipartFile multipartFile, @AuthenticationPrincipal CurrentUser currentUser) throws IOException {
-        if (multipartFile != null && !multipartFile.isEmpty()) {
-            String fileName = System.nanoTime() + "_" + multipartFile.getOriginalFilename();
-            File file = new File(imageUploadPath + fileName);
-            multipartFile.transferTo(file);
-            doctor.setProfilePic(fileName);
-        }
-        doctor.setUser(currentUser.getUser());
-        doctorRepository.save(doctor);
+        doctorService.saveDoctor(doctor, multipartFile, currentUser);
         return "redirect:/doctors";
     }
 
     @GetMapping("/remove")
     public String doctorRemove(@RequestParam("id") int id) {
-        doctorRepository.deleteById(id);
+        doctorService.delete(id);
         return "redirect:/doctors";
     }
 }
